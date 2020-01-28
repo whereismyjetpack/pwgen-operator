@@ -15,5 +15,5 @@ jobs:
         USERNAME: ${{ secrets.gh_user }}
         PASSWORD: ${{ secrets.gh_token }}
         IMAGE_NAME: "whereismyjetpack/pwgen-operator"
-        TAG_NAME: "${{ env.GITHUB_ACTION }}"
+        TAG_NAME: "v1.0"
         LATEST: "true"

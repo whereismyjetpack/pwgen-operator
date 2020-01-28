@@ -1,0 +1,19 @@
+name: CI
+
+on: [push]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Docker Push
+      uses: opspresso/action-docker@v0.2.2
+      env:
+        USERNAME: ${{ secrets.gh_user }}
+        PASSWORD: ${{ secrets.gh_token }}
+        IMAGE_NAME: "whereismyjetpack/pwgen-operator"
+        TAG_NAME: "${{ env.GITHUB_ACTION }}"
+        LATEST: "true"

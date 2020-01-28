@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: pwgen
+  namespace: pwgen
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      name: pwgen
+  strategy:
+    rollingUpdate:
+      maxSurge: 25%
+      maxUnavailable: 25%
+    type: RollingUpdate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        name: pwgen
+    spec:
+      serviceAccountName: pwgen
+      containers:
+      - image: whereismyjetpack/pwgen-operator:latest
+        imagePullPolicy: Always
+        name: pwgen

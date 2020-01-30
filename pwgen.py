@@ -16,7 +16,7 @@ def process_spec(spec):
     or other options the spec provides
     """
     secret_data = {}
-    for secret in spec["secret_items"]:
+    for secret in spec["secretItems"]:
         length = secret.get("length", 25)
         if secret.get("value"):
             secret_data[secret["key"]] = base64.b64encode(
@@ -46,6 +46,7 @@ def create_secret(namespace, name, data):
         return False
 
     return True
+
 
 
 @kopf.on.create("edu.psu.libraries", "v1alpha1", "pwgens")

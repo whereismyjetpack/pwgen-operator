@@ -9,11 +9,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v2
-    - name: Docker Push
-      uses: opspresso/action-docker@v0.2.2
-      env:
-        USERNAME: ${{ secrets.gh_user }}
-        PASSWORD: ${{ secrets.gh_token }}
-        IMAGE_NAME: "whereismyjetpack/pwgen-operator"
-        TAG_NAME: "v1.0"
-        LATEST: "true"
+    - name: Docker build
+      run: |
+        docker build -t foo .

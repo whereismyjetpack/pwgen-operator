@@ -6,6 +6,9 @@ orbs:
 
 jobs:
   build-and-push:
+    parameters:
+      tag:
+        type: string
     executor: docker/docker
     environment:
       REGISTRY_HOST: harbor.k8s.libraries.psu.edu
@@ -19,17 +22,26 @@ jobs:
     - docker/build:
         image: $REGISTRY_URL
         registry: $REGISTRY_HOST
-        tag: $CIRCLE_SHA1
+        tag: << parameters.tag >>
     - docker/push:
         image: $REGISTRY_URL
         registry: $REGISTRY_HOST
-        tag: $CIRCLE_SHA1
+        tag: << parameters.tag >>
 
 workflows:
   docker_push:
     jobs:
       - build-and-push:
+          tag: $CIRCLE_SHA1
           filters:
             branches:
               only:
                 - master
+      - build-and-push:
+          tag: $CIRCLE_TAG
+          filters:
+            branches:
+              ignore: /.*/ 
+            tags:
+              only:
+                - /.*/

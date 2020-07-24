@@ -3,7 +3,7 @@ kind: PwGen
 metadata:
   name: test2
 spec:
-  secret_items:
+  secretItems:
     - key: ROOT_PASSWORD  
     - key: MYSQL_DATABASE
       value: myapp

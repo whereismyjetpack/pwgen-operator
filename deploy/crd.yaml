@@ -11,7 +11,7 @@
          spec:
            type: object
            properties:
-             secret_items:
+             secretItems:
                type: array
                items:
                  type: object
